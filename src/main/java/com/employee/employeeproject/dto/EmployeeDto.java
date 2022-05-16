@@ -1,18 +1,8 @@
-package com.employee.employeeproject.entity;
+package com.employee.employeeproject.dto;
 
-import com.employee.employeeproject.dto.EmployeeDto;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
-@Entity
-public class Employee {
-    @Id
-    @GeneratedValue
-    private int id;
+public class EmployeeDto {
     private String fullName;
     private String profilePic;
     private String gender;
@@ -21,8 +11,7 @@ public class Employee {
     private LocalDate startDate;
     private String notes;
 
-    public Employee(int id, String fullName, String profilePic, String gender, int salary, String department, LocalDate startDate, String notes) {
-        this.id = id;
+    public EmployeeDto(String fullName, String profilePic, String gender, int salary, String department, LocalDate startDate, String notes) {
         this.fullName = fullName;
         this.profilePic = profilePic;
         this.gender = gender;
@@ -30,31 +19,6 @@ public class Employee {
         this.department = department;
         this.startDate = startDate;
         this.notes = notes;
-    }
-    public Employee(Employee employee) {
-        this.id = employee.id;
-        this.fullName = employee.fullName;
-        this.profilePic = employee.profilePic;
-        this.gender = employee.gender;
-        this.salary = employee.salary;
-        this.department = employee.department;
-        this.startDate = employee.startDate;
-        this.notes = employee.notes;
-    }
-
-    public Employee() {
-
-    }
-
-    public Employee(EmployeeDto employeeDto) {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFullName() {
@@ -111,19 +75,5 @@ public class Employee {
 
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                ", profilepic='" + profilePic + '\'' +
-                ", gender='" + gender + '\'' +
-                ", salary=" + salary +
-                ", department='" + department + '\'' +
-                ", startDate=" + startDate +
-                ", notes='" + notes + '\'' +
-                '}';
     }
 }

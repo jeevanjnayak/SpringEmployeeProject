@@ -14,23 +14,28 @@ import java.util.Optional;
 public class EmployeeController {
     @Autowired
     IEmployeeService iEmployeeService;
-    @PostMapping()
+
+    @PostMapping("/adding")
     public Employee createEmployees(@RequestBody Employee employee){
         return iEmployeeService.addEmployee(employee);
     }
-    @GetMapping()
+
+    @GetMapping("/showall")
     public List<Employee> getAllEmployees(){
         return iEmployeeService.getAllEmployees();
     }
-    @GetMapping("/{id}")
+
+    @GetMapping("/show/{id}")
     public Optional<Employee> getByEmployee(@PathVariable int id){
         return iEmployeeService.getById(id);
     }
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable int id){
         return iEmployeeService.deleteById(id);
     }
-    @PutMapping("/{id}")
+
+    @PutMapping("/edit/{id}")
     public Employee editEmployee(@RequestBody Employee employee, @PathVariable int id){
         return iEmployeeService.editEmployee(employee, id);
     }
