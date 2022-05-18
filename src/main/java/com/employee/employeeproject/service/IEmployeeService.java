@@ -1,6 +1,7 @@
 package com.employee.employeeproject.service;
 
 
+import com.employee.employeeproject.dto.EmployeeDto;
 import com.employee.employeeproject.entity.Employee;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 public interface IEmployeeService {
 
-    Employee addEmployee(Employee employee);
+    Employee addEmployee(EmployeeDto employeeDto);
 
     List<Employee> getAllEmployees();
 
@@ -16,5 +17,5 @@ public interface IEmployeeService {
 
     String deleteById(int id);
 
-    Employee editEmployee(Employee employee, int id);
+    String editEmployee(EmployeeDto employeeDto, int id);
 }

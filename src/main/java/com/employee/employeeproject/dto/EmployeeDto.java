@@ -12,6 +12,7 @@ public class EmployeeDto {
     private String notes;
 
     public EmployeeDto(String fullName, String profilePic, String gender, int salary, String department, LocalDate startDate, String notes) {
+        super();
         this.fullName = fullName;
         this.profilePic = profilePic;
         this.gender = gender;

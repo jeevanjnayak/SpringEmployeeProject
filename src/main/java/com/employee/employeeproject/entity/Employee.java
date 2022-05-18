@@ -1,12 +1,16 @@
 package com.employee.employeeproject.entity;
 
 import com.employee.employeeproject.dto.EmployeeDto;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
+
+@Data
+@ToString
+@RequiredArgsConstructor
 
 @Entity
 public class Employee {
@@ -21,16 +25,6 @@ public class Employee {
     private LocalDate startDate;
     private String notes;
 
-    public Employee(int id, String fullName, String profilePic, String gender, int salary, String department, LocalDate startDate, String notes) {
-        this.id = id;
-        this.fullName = fullName;
-        this.profilePic = profilePic;
-        this.gender = gender;
-        this.salary = salary;
-        this.department = department;
-        this.startDate = startDate;
-        this.notes = notes;
-    }
     public Employee(Employee employee) {
         this.id = employee.id;
         this.fullName = employee.fullName;
@@ -42,88 +36,25 @@ public class Employee {
         this.notes = employee.notes;
     }
 
-    public Employee() {
-
-    }
-
-    public Employee(EmployeeDto employeeDto) {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Employee(EmployeeDto employeeDto, int id) {
+        this.fullName = employeeDto.getFullName();
+        this.profilePic = employeeDto.getProfilePic();
+        this.gender = employeeDto.getGender();
+        this.salary = employeeDto.getSalary();
+        this.department = employeeDto.getDepartment();
+        this.startDate = employeeDto.getStartDate();
+        this.notes = employeeDto.getNotes();
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public Employee(EmployeeDto employeeDto) {
+        this.fullName = employeeDto.getFullName();
+        this.profilePic = employeeDto.getProfilePic();
+        this.gender = employeeDto.getGender();
+        this.salary = employeeDto.getSalary();
+        this.department = employeeDto.getDepartment();
+        this.startDate = employeeDto.getStartDate();
+        this.notes = employeeDto.getNotes();
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                ", profilepic='" + profilePic + '\'' +
-                ", gender='" + gender + '\'' +
-                ", salary=" + salary +
-                ", department='" + department + '\'' +
-                ", startDate=" + startDate +
-                ", notes='" + notes + '\'' +
-                '}';
-    }
 }

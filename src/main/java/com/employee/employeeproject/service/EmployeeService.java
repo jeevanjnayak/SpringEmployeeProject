@@ -14,19 +14,20 @@ public class EmployeeService implements IEmployeeService{
     @Autowired
     IEmployeeRepository iEmployeeRepository;
 
-
-    public Employee addEmployee(Employee employee) {
+//adding an employee and saving to DB
+    public Employee addEmployee(EmployeeDto employeeDto) {
+        Employee employee = new Employee(employeeDto);
         return iEmployeeRepository.save(employee);
     }
-
+//getting all the employee and showing in a list form from the DB
     public List<Employee> getAllEmployees() {
         return iEmployeeRepository.findAll();
     }
-
+    //getting the employee with a particular id from the DB and showing
     public Optional<Employee> getById(int id) {
         return iEmployeeRepository.findById(id);
     }
-
+//    deleting the employee with a particular id from the DB
     public String deleteById(int id) {
         if (iEmployeeRepository.findById(id).isPresent()) {
             iEmployeeRepository.deleteById(id);
@@ -34,11 +35,13 @@ public class EmployeeService implements IEmployeeService{
         }
         return "Employee not present!";
     }
-
-    public Employee editEmployee(Employee employee, int id) {
+//getting the employee with a particular id from the DB and updating the data and storing to DB
+    public String editEmployee(EmployeeDto employeeDto, int id) {
         if (iEmployeeRepository.findById(id).isPresent()) {
+            Employee employee = new Employee(employeeDto , id);
             employee.setId(id);
-            return iEmployeeRepository.save(employee);
+            Employee string = iEmployeeRepository.save(employee);
+            return "After the update " +"\n" +string;
         }
         return null;
     }
