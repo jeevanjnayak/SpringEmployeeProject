@@ -1,80 +1,35 @@
 package com.employee.employeeproject.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
+@Data
+@RequiredArgsConstructor
 public class EmployeeDto {
+
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]+$", message = "Name is invalid! it must have atleast 2 characters and the first character should be uppercase.")
     private String fullName;
+
+    @NotEmpty(message = "Profile pic can't be empty")
     private String profilePic;
+
+    @NotEmpty(message = "Its a required field! can't be empty")
     private String gender;
+
+    @Min(value = 15000, message = "salary can't be less than 15000!")
     private int salary;
+
+    @NotNull(message = "Mention the Department!")
     private String department;
+
+    @NotNull(message = "Mention the Start Date!")
     private LocalDate startDate;
     private String notes;
-
-    public EmployeeDto(String fullName, String profilePic, String gender, int salary, String department, LocalDate startDate, String notes) {
-        super();
-        this.fullName = fullName;
-        this.profilePic = profilePic;
-        this.gender = gender;
-        this.salary = salary;
-        this.department = department;
-        this.startDate = startDate;
-        this.notes = notes;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 }

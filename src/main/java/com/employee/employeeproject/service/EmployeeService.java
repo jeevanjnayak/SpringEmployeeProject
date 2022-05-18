@@ -41,7 +41,7 @@ public class EmployeeService implements IEmployeeService{
             Employee employee = new Employee(employeeDto , id);
             employee.setId(id);
             Employee string = iEmployeeRepository.save(employee);
-            return "After the update " +"\n" +string;
+            return string.toString();
         }
         return null;
     }
