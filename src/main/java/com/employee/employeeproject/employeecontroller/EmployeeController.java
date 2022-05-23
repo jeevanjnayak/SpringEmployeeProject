@@ -57,7 +57,7 @@ public class EmployeeController {
     @GetMapping("/show/{department}")
     public ResponseEntity<ResponseDto> getEmployeeByDepartment(@PathVariable String department){
         List<Employee> employeeList = iEmployeeService.getEmployeeByDepartment(department);
-        ResponseDto responseDto = new ResponseDto("Get Call for ID successful",employeeList);
+        ResponseDto responseDto = new ResponseDto("employee list gotten successfully",employeeList);
         return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
 }
