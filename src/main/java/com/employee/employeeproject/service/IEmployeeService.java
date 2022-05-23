@@ -18,4 +18,6 @@ public interface IEmployeeService {
     String deleteById(int id);
 
     String editEmployee(EmployeeDto employeeDto, int id);
+
+    List<Employee> getEmployeeByDepartment(String department);
 }

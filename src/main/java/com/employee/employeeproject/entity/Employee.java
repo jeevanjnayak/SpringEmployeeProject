@@ -3,10 +3,9 @@ package com.employee.employeeproject.entity;
 import com.employee.employeeproject.dto.EmployeeDto;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @ToString
@@ -21,7 +20,10 @@ public class Employee {
     private String profilePic;
     private String gender;
     private int salary;
-    private String department;
+    @ElementCollection
+    @CollectionTable(name = "department", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "departments")
+    private List<String> department;
     private LocalDate startDate;
     private String notes;
 

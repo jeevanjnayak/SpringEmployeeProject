@@ -4,11 +4,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
@@ -26,8 +31,10 @@ public class EmployeeDto {
     @Min(value = 15000, message = "salary can't be less than 15000!")
     private int salary;
 
-    @NotNull(message = "Mention the Department!")
-    private String department;
+    @ElementCollection
+    @CollectionTable(name = "department", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "departments")
+    private List<String> department;
 
     @NotNull(message = "Mention the Start Date!")
     private LocalDate startDate;

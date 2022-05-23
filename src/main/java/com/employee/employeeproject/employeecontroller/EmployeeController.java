@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -25,28 +26,38 @@ public class EmployeeController {
         ResponseDto responseDto = new ResponseDto("Employee added Successfully", employee);
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
+
     //getting all the employee and showing in a list form from the DB using get mapping
     @GetMapping("/showall")
-    public ResponseEntity<ResponseDto> getAllEmployees(){
+    public ResponseEntity<ResponseDto> getAllEmployees() {
         ResponseDto responseDto = new ResponseDto("Employee List shown Bellow", iEmployeeService.getAllEmployees());
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
+
     //getting the employee with a particular id from the DB and showing using get mapping
     @GetMapping("/show/{id}")
-    public ResponseEntity<ResponseDto> getByEmployee(@PathVariable int id){
-        ResponseDto responseDto = new ResponseDto("Employee with id "+id+" Shown bellow", iEmployeeService.getById(id));
+    public ResponseEntity<ResponseDto> getByEmployee(@PathVariable int id) {
+        ResponseDto responseDto = new ResponseDto("Employee with id " + id + " Shown bellow", iEmployeeService.getById(id));
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
-//deleting the employee with a particular id from the DB using Delete mapping
+
+    //deleting the employee with a particular id from the DB using Delete mapping
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseDto> deleteEmployee(@PathVariable int id) {
-        ResponseDto responseDto = new ResponseDto("Employee with id "+id+" Deleted Successfully", iEmployeeService.deleteById(id));
+        ResponseDto responseDto = new ResponseDto("Employee with id " + id + " Deleted Successfully", iEmployeeService.deleteById(id));
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
+
     //getting the employee with a particular id from the DB and updating the data and storing to DB using put mapping
     @PutMapping("/edit/{id}")
     public ResponseEntity<ResponseDto> editEmployee(@Valid @RequestBody EmployeeDto employeeDto, @PathVariable int id) {
-        ResponseDto responseDto = new ResponseDto("Employee with id "+id+" Updated Successfully", iEmployeeService.editEmployee(employeeDto, id));
+        ResponseDto responseDto = new ResponseDto("Employee with id " + id + " Updated Successfully", iEmployeeService.editEmployee(employeeDto, id));
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+    @GetMapping("/show/{department}")
+    public ResponseEntity<ResponseDto> getEmployeeByDepartment(@PathVariable String department){
+        List<Employee> employeeList = iEmployeeService.getEmployeeByDepartment(department);
+        ResponseDto responseDto = new ResponseDto("Get Call for ID successful",employeeList);
+        return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
 }

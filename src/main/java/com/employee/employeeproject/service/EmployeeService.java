@@ -45,4 +45,11 @@ public class EmployeeService implements IEmployeeService{
         }
         return null;
     }
+
+    @Override
+    public List<Employee> getEmployeeByDepartment(String department) {
+        return iEmployeeRepository.findEmployeeByDepartment(department);
+    }
+
+
 }
