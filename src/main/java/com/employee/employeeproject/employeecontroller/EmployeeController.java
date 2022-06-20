@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -20,7 +21,7 @@ public class EmployeeController {
     IEmployeeService iEmployeeService;
 
     //adding an employee and saving to DB using post mapping and taking the input by RequestBody
-    @PostMapping("/adding")
+    @PostMapping("/add")
     public ResponseEntity<ResponseDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         Employee employee = iEmployeeService.addEmployee(employeeDto);
         ResponseDto responseDto = new ResponseDto("Employee added Successfully", employee);
@@ -54,7 +55,7 @@ public class EmployeeController {
         ResponseDto responseDto = new ResponseDto("Employee with id " + id + " Updated Successfully", iEmployeeService.editEmployee(employeeDto, id));
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
-    @GetMapping("/show/{department}")
+    @GetMapping("/department/{department}")
     public ResponseEntity<ResponseDto> getEmployeeByDepartment(@PathVariable String department){
         List<Employee> employeeList = iEmployeeService.getEmployeeByDepartment(department);
         ResponseDto responseDto = new ResponseDto("employee list gotten successfully",employeeList);

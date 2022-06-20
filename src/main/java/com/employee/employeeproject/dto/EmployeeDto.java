@@ -1,7 +1,6 @@
 package com.employee.employeeproject.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.CollectionTable;
@@ -12,7 +11,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -20,7 +18,7 @@ import java.util.List;
 public class EmployeeDto {
 
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]+$", message = "Name is invalid! it must have atleast 2 characters and the first character should be uppercase.")
-    private String fullName;
+    private String name;
 
     @NotEmpty(message = "Profile pic can't be empty")
     private String profilePic;
@@ -37,6 +35,6 @@ public class EmployeeDto {
     private List<String> department;
 
     @NotNull(message = "Mention the Start Date!")
-    private LocalDate startDate;
+    private String startDate;
     private String notes;
 }

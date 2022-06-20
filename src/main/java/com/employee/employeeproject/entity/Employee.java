@@ -4,7 +4,6 @@ import com.employee.employeeproject.dto.EmployeeDto;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -16,7 +15,7 @@ public class Employee {
     @Id
     @GeneratedValue
     private int id;
-    private String fullName;
+    private String name;
     private String profilePic;
     private String gender;
     private int salary;
@@ -24,12 +23,12 @@ public class Employee {
     @CollectionTable(name = "department", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "departments")
     private List<String> department;
-    private LocalDate startDate;
+    private String startDate;
     private String notes;
 
     public Employee(Employee employee) {
         this.id = employee.id;
-        this.fullName = employee.fullName;
+        this.name = employee.name;
         this.profilePic = employee.profilePic;
         this.gender = employee.gender;
         this.salary = employee.salary;
@@ -39,7 +38,7 @@ public class Employee {
     }
 
     public Employee(EmployeeDto employeeDto, int id) {
-        this.fullName = employeeDto.getFullName();
+        this.name = employeeDto.getName();
         this.profilePic = employeeDto.getProfilePic();
         this.gender = employeeDto.getGender();
         this.salary = employeeDto.getSalary();
@@ -50,7 +49,7 @@ public class Employee {
     }
 
     public Employee(EmployeeDto employeeDto) {
-        this.fullName = employeeDto.getFullName();
+        this.name = employeeDto.getName();
         this.profilePic = employeeDto.getProfilePic();
         this.gender = employeeDto.getGender();
         this.salary = employeeDto.getSalary();
